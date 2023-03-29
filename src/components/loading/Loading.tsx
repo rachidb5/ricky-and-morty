@@ -1,7 +1,7 @@
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import Image from 'next/image'
 
-export default function Header() {
+export default function Loading() {
   return (
     <header>
     <Image src='/../assets/logo.png' alt="Ricky and morty's logo" width={200} height={100}/>

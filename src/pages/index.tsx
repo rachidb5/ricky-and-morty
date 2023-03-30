@@ -7,6 +7,7 @@ import styles from "@/styles/Home.module.css";
 import { useQuery } from "react-query";
 import Loading from "@/components/loading/Loading";
 import SideBar from "@/components/SideBar/SideBar";
+import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
 export default function Home() {
   const charactersData = useSelector(
@@ -43,7 +44,19 @@ export default function Home() {
       </Head>
       <div className="center-container">
         <SideBar />
-        <main className={styles.main}>
+
+        <div className="main">
+          <div className="main-header">
+            <h2>Personagens</h2>
+            <div id="darkmode">
+              <input type="checkbox" className="checkbox" id="checkbox" />
+              <label htmlFor="checkbox" className="label">
+                <BsMoonStarsFill color="white" />
+                <BsFillSunFill color="yellow" />
+                <div className="ball"></div>
+              </label>
+            </div>
+          </div>
           {!data.results && data.results == undefined ? (
             <>
               <span>Loading</span>
@@ -55,22 +68,22 @@ export default function Home() {
               )
             )
           )}
-        </main>
-      </div>
-      <div className="nav btn-container">
-        <button
-          onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
-          disabled={page === 1}
-        >
-          Prev Page
-        </button>
+          <div className="nav btn-container">
+            <button
+              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
+              disabled={page === 1}
+            >
+              Prev Page
+            </button>
 
-        <button
-          onClick={() => setPage((prevState) => prevState + 1)}
-          disabled={page === data.info.pages}
-        >
-          Next Page
-        </button>
+            <button
+              onClick={() => setPage((prevState) => prevState + 1)}
+              disabled={page === data.info.pages}
+            >
+              Next Page
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );

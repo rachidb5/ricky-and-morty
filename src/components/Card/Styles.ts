@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const Btn = styled.button`
   height: 40px;
-  width: 180px;
+  width: 100%;
   color: #fff;
   background: #1366e2;
   border: none;
-  border-radius: 4px;
+  margin-bottom:0;
   cursor: pointer;
   &:hover {
     background: #0a5cd0;
@@ -14,8 +14,11 @@ export const Btn = styled.button`
 `;
 export const Wrapper = styled.div`
   width: 200px;
-  height: 300px;
-  background: white;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height: 350px;
+  background: #202020;
   margin: auto;
   position: relative;
   overflow: hidden;

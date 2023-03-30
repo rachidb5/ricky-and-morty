@@ -31,7 +31,7 @@ export const FavBtn = styled.button`
   width:1.5rem;
   height:1rem;
   padding:0;
-  margin:0;
+  margin-left:auto;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,4 +1,3 @@
-import { useQuery } from "react-query";
 import { Container, Item, Row, Details, FavBtn } from "./Styles";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useState, useEffect } from "react";

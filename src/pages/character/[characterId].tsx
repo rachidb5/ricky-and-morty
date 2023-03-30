@@ -4,6 +4,7 @@ import DetailsCard from "@/components/DetailsCard/DetailsCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "@/components/loading/Loading";
+import Header from "@/components/Header/Header";
 
 
 interface IObj {
@@ -66,6 +67,7 @@ export default function Character() {
   {console.log(data)}
   return (
     <div>
+      <Header />
       <DetailsCard
         name={data.name}
         img={data.image}

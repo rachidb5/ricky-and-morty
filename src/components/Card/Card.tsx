@@ -1,20 +1,23 @@
-import { Btn } from './Styles'
+import { Btn, Wrapper } from "./Styles";
+import { useRouter } from "next/router";
 
 type Props = {
-    img: string,
-    name: string
-}
+  img: string;
+  name: string;
+  id: number;
+};
 
-export default function Card(props: Props){
-    return(
-        <>
-            <div>
-                <img src={ props.img }/>
-                <h2>{ props.name }</h2>
-                <Btn>
-                    Ver detalhes
-                </Btn>
-            </div>
-        </>
-    )
+export default function Card(props: Props) {
+  const router = useRouter();
+  return (
+    <>
+      <Wrapper>
+        <img src={props.img} />
+        <h2>{props.name}</h2>
+        <Btn onClick={() => router.push(`/character/${props.id}`)}>
+          Ver detalhes
+        </Btn>
+      </Wrapper>
+    </>
+  );
 }

@@ -1,18 +1,12 @@
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Loading() {
   return (
-    <header>
-    <Image src='/../assets/logo.png' alt="Ricky and morty's logo" width={200} height={100}/>
-    <div id="darkmode">
-      <input type="checkbox" className="checkbox" id="checkbox" />
-      <label htmlFor="checkbox" className="label">
-        <BsMoonStarsFill color="white" />
-        <BsFillSunFill color="yellow" />
-        <div className="ball"></div>
-      </label>
+    <div className="loadingio-spinner-rolling-p57a4ym7lb8">
+      <div className="ldio-jvf4v9vxt09">
+        <div></div>
+      </div>
     </div>
-    </header>
   );
 }

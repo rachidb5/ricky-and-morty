@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Card from "../components/Card/Card";
-import React, { useState, useEffect } from "react";
+import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { getCharactersData } from "../state/actions/charactersActions";
 import styles from "@/styles/Home.module.css";
@@ -15,7 +15,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
 
-  const fetchUsers = async (page) => {
+  const fetchCharacters = async (page) => {
     const res = await fetch(
       `https://rickandmortyapi.com/api/character?page=${page}`
     );
@@ -23,8 +23,8 @@ export default function Home() {
   };
 
   const { isLoading, isError, error, data, isFetching } = useQuery(
-    ["users", page],
-    () => fetchUsers(page),
+    ["Characters", page],
+    () => fetchCharacters(page),
     { keepPreviousData: true }
   );
 
@@ -46,8 +46,8 @@ export default function Home() {
             <span>Loading</span>
           </>
         ) : (
-          data.results.map((c: { id: any; image: string; name: string }) => (
-            <Card key={c.id} img={c.image} name={c.name} />
+          data.results.map((c: { id: number; image: string; name: string }) => (
+            <Card img={c.image} name={c.name} id={c.id}/>
           ))
         )}
       </main>

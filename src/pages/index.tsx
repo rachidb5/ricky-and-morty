@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Card from "../components/Card/Card";
-import { useState } from 'react';
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCharactersData } from "../state/actions/charactersActions";
 import styles from "@/styles/Home.module.css";
 import { useQuery } from "react-query";
 import Loading from "@/components/loading/Loading";
+import SideBar from "@/components/SideBar/SideBar";
 
 export default function Home() {
   const charactersData = useSelector(
@@ -40,17 +41,22 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        {!data.results && data.results == undefined ? (
-          <>
-            <span>Loading</span>
-          </>
-        ) : (
-          data.results.map((c: { id: number; image: string; name: string }) => (
-            <Card img={c.image} name={c.name} id={c.id}/>
-          ))
-        )}
-      </main>
+      <div className="center-container">
+        <SideBar />
+        <main className={styles.main}>
+          {!data.results && data.results == undefined ? (
+            <>
+              <span>Loading</span>
+            </>
+          ) : (
+            data.results.map(
+              (c: { id: number; image: string; name: string }) => (
+                <Card img={c.image} name={c.name} id={c.id} />
+              )
+            )
+          )}
+        </main>
+      </div>
       <div className="nav btn-container">
         <button
           onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}

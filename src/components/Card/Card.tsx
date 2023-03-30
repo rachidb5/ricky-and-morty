@@ -12,7 +12,7 @@ export default function Card(props: Props) {
   return (
     <>
       <Wrapper>
-        <img src={props.img} />
+        <img src={props.img} className="char-img"/>
         <h2>{props.name}</h2>
         <Btn onClick={() => router.push(`/character/${props.id}`)}>
           Ver detalhes

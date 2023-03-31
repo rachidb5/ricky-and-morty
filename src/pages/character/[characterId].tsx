@@ -6,9 +6,8 @@ import axios from "axios";
 import Loading from "@/components/loading/Loading";
 import Header from "@/components/Header/Header";
 
-
 interface IObj {
-  name: string,
+  name: string;
 }
 interface ICharacter {
   id: number;
@@ -29,16 +28,16 @@ export default function Character() {
     name: "",
     id: 0,
     image: "",
-    species:"",
-    status:"",
-    location:{
-      name:""
+    species: "",
+    status: "",
+    location: {
+      name: "",
     },
-    gender:"",
-    origin:{
-      name:""
+    gender: "",
+    origin: {
+      name: "",
     },
-    type:"",
+    type: "",
   });
   const [loading, setLoading] = useState(true);
 
@@ -58,20 +57,18 @@ export default function Character() {
 
   useEffect(() => {
     if (router.isReady) {
-      console.log(router.query.characterId);
       fetchData(characterId);
     }
   }, [router.isReady]);
 
   if (loading) return <Loading />;
-  {console.log(data)}
   return (
     <div>
       <Header />
       <DetailsCard
         name={data.name}
         img={data.image}
-        id = { data.id }
+        id={data.id}
         species={data.species}
         location={data.location.name}
         status={data.status}

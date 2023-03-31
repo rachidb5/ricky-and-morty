@@ -14,19 +14,20 @@ export default function Card(props: Props) {
   const router = useRouter();
   const [fav, setFav] = useState(false);
   const favoriteCharacter = () => {
+    let newArray: number[] = []
     if (!localStorage.getItem("favs")) {
       localStorage.setItem("favs", JSON.stringify([props.id]));
       setFav(true);
       return null;
     }
     if (fav) {
-      const newArray = JSON.parse(localStorage.getItem("favs")).filter(
+      newArray = JSON.parse(localStorage.getItem("favs")).filter(
         (f) => f !== props.id
       );
       localStorage.setItem("favs", JSON.stringify(newArray));
       setFav(false);
     } else {
-      const newArray = JSON.parse(localStorage.getItem("favs"));
+      newArray = JSON.parse(localStorage.getItem("favs"));
       newArray.push(props.id);
       localStorage.setItem("favs", JSON.stringify(newArray));
       setFav(true);

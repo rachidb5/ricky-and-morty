@@ -12,12 +12,7 @@ import Link from "next/link";
 
 export default function Home() {
   const [page, setPage] = useState(1);
-  const [filter, setFilter] = useState({
-    name: "",
-    especie: "",
-    status: "",
-    genero: "",
-  });
+
   const filtersData = useSelector((state: any) => state);
   const dispatch = useDispatch();
 
@@ -46,7 +41,6 @@ export default function Home() {
   }, []);
 
   if (isLoading) return <Loading />;
-  console.log(data);
   //if (error) return 'An error has occurred: ' + error.message
   return (
     <>

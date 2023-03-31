@@ -14,22 +14,25 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getFilters } from "../../state/actions/filtersActions";
 
+interface IFilters {
+  name: string
+  especie: string,
+  status: string,
+  genero: string,
+}
 export default function SideBar() {
-  const [name, setName] = useState("");
-  const [especie, setEspecie] = useState("");
-  const [status, setStatus] = useState("");
-  const [genero, setGenero] = useState("");
+  const [filters, setFilters] = useState<IFilters>({
+    name: '',
+    especie: '',
+    status: '',
+    genero: '',
+  });
   const dispatch = useDispatch();
   const filtersData = useSelector((state: any) => state);
 
   const handleCLick = () => {
     dispatch(
-      getFilters({
-        name,
-        especie,
-        status,
-        genero,
-      })
+      getFilters(filters)
     );
     console.log(filtersData);
   };
@@ -61,7 +64,7 @@ export default function SideBar() {
           <Search
             placeholder="Insira o nome aqui"
             type="name"
-            onChange={({ target: { value } }) => setName(value)}
+            onChange={({ target: { value } }) => setFilters({...filters, name: value})}
           />
         </FilterContainer>
         <FilterContainer>
@@ -69,12 +72,12 @@ export default function SideBar() {
           <Search
             placeholder="Insira a especie aqui"
             type="name"
-            onChange={({ target: { value } }) => setEspecie(value)}
+            onChange={({ target: { value } }) => setFilters({...filters, especie: value})}
           />
         </FilterContainer>
         <FilterContainer>
           <Label>Status</Label>
-          <select onChange={({ target: { value } }) => setStatus(value)}>
+          <select onChange={({ target: { value } }) => setFilters({...filters, status: value})}>
             <option></option>
             <option value="alive">Vivo</option>
             <option value="dead">Morto</option>
@@ -83,7 +86,7 @@ export default function SideBar() {
         </FilterContainer>
         <FilterContainer>
           <Label>Genero</Label>
-          <select onChange={({ target: { value } }) => setGenero(value)}>
+          <select onChange={({ target: { value } }) => setFilters({...filters, genero: value})}>
             <option></option>
             <option value="male">Macho</option>
             <option value="female">Femea</option>

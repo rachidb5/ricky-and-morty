@@ -9,9 +9,13 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Header from "@/components/Header/Header";
 
 export default function Favoritos() {
+  let arr: number[] = [];
+  if (!JSON.parse(localStorage.getItem("favs"))) {
+    localStorage.setItem("favs", JSON.stringify(arr));
+  }
+  arr = JSON.parse(localStorage.getItem("favs"));
+
   const fetchCharacters = async () => {
-    let arr = JSON.parse(localStorage.getItem("favs"));
-    console.log(arr.join(","));
     const res = await fetch(`https://rickandmortyapi.com/api/character/${arr}`);
     return res.json();
   };
@@ -23,7 +27,6 @@ export default function Favoritos() {
   );
 
   if (isLoading) return <Loading />;
-
   //if (error) return 'An error has occurred: ' + error.message
   return (
     <>
@@ -48,9 +51,21 @@ export default function Favoritos() {
               </label>
             </div>
           </div>
-          {!data && data == undefined ? (
+
+          {arr.length === 0 ? (
             <>
-              <span>Loading</span>
+              <span>Nenhum personagem favoritado</span>
+            </>
+          ) : arr.length === 1 ? (
+            <Card
+              key={data.id}
+              img={data.image}
+              name={data.name}
+              id={data.id}
+            />
+          ) : !data && data == undefined ? (
+            <>
+              <span>Algo deu errado</span>
             </>
           ) : (
             data.map((c: { id: number; image: string; name: string }) => (

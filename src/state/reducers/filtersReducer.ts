@@ -1,18 +1,7 @@
-import { HYDRATE } from "next-redux-wrapper";
-
-const initialState = {
-    name: '',
-    especie: '',
-    genero: '',
-    status: '',
-    favorito: false,
-    loading: true
-}
+const initialState = {}
 
 const filtersReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case HYDRATE:
-            return { ...state, ...action.payload.filters };
         case "GET_FILTERS":
             return {
                 ... state,

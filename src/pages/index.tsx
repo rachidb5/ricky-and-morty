@@ -92,7 +92,11 @@ export default function Home() {
           )}
           {!data.results && data.results == undefined ? (
             <>
-              {data.error ===  "There is nothing here"?<span>Nenhum resultado encontrado</span>:<span>Loading</span>}
+              {data.error === "There is nothing here" ? (
+                <span>Nenhum resultado encontrado</span>
+              ) : (
+                <span>Loading</span>
+              )}
             </>
           ) : (
             data.results.map(

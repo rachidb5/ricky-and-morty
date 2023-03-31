@@ -14,14 +14,6 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getFilters } from "../../state/actions/filtersActions";
 
-interface IFilters {
-  name: string;
-  especie: string;
-  genero: string;
-  status: string;
-  favorito: boolean;
-}
-
 export default function SideBar() {
   const [name, setName] = useState("");
   const [especie, setEspecie] = useState("");
@@ -31,24 +23,28 @@ export default function SideBar() {
   const filtersData = useSelector((state: any) => state);
 
   const handleCLick = () => {
-    dispatch(getFilters({
-      name,
-      especie,
-      status,
-      genero,
-    }))
-    console.log(filtersData)
-  }
+    dispatch(
+      getFilters({
+        name,
+        especie,
+        status,
+        genero,
+      })
+    );
+    console.log(filtersData);
+  };
 
   const handleCLear = () => {
-    dispatch(getFilters({
-      name: '',
-      especie:'',
-      status:'',
-      genero:'',
-    }))
-    console.log(filtersData)
-  }
+    dispatch(
+      getFilters({
+        name: "",
+        especie: "",
+        status: "",
+        genero: "",
+      })
+    );
+    console.log(filtersData);
+  };
   return (
     <Bar>
       <Image
@@ -57,6 +53,7 @@ export default function SideBar() {
         width={150}
         height={75}
       />
+
       <h1>Personalize sua busca</h1>
       <FiltersDiv>
         <FilterContainer>
@@ -95,8 +92,8 @@ export default function SideBar() {
           </select>
         </FilterContainer>
         <BtnContainer>
-          <BtnClear  onClick={handleCLear} >Limpar</BtnClear>
-          <BtnSearch onClick={handleCLick} >Buscar</BtnSearch>
+          <BtnClear onClick={handleCLear}>Limpar</BtnClear>
+          <BtnSearch onClick={handleCLick}>Buscar</BtnSearch>
         </BtnContainer>
       </FiltersDiv>
     </Bar>

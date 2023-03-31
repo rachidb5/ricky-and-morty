@@ -8,6 +8,7 @@ import SideBar from "@/components/SideBar/SideBar";
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { getFilters } from "@/state/actions/filtersActions";
+import Link from "next/link";
 
 export default function Home() {
   const [page, setPage] = useState(1);
@@ -23,16 +24,15 @@ export default function Home() {
   const fetchCharacters = async (page, filter) => {
     const res = await fetch(
       `https://rickandmortyapi.com/api/character?page=${page}&name=${filter.name}&status=${filter.status}&species=${filter.especie}&gender=${filter.genero}`
-      );
+    );
     return res.json();
   };
 
   const { isLoading, isError, error, data, isFetching } = useQuery(
     ["Characters", page, filtersData.filters.filtersData],
-    () => fetchCharacters(page,filtersData.filters.filtersData),
+    () => fetchCharacters(page, filtersData.filters.filtersData),
     { keepPreviousData: true }
-    );
-    console.log(filtersData.filters.filtersData);
+  );
 
   useEffect(() => {
     dispatch(
@@ -46,7 +46,7 @@ export default function Home() {
   }, []);
 
   if (isLoading) return <Loading />;
-
+  console.log(data);
   //if (error) return 'An error has occurred: ' + error.message
   return (
     <>
@@ -61,6 +61,9 @@ export default function Home() {
         <div className="main">
           <div className="main-header">
             <h2>Personagens</h2>
+            <Link href={"/favoritos"}>
+              <h4>Ver Favoritos</h4>
+            </Link>
             <div id="darkmode">
               <input type="checkbox" className="checkbox" id="checkbox" />
               <label htmlFor="checkbox" className="label">
@@ -70,26 +73,32 @@ export default function Home() {
               </label>
             </div>
           </div>
-          <div className="nav btn-container">
-            <button
-              className="page-btn"
-              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
-              disabled={page === 1}
-            >
-              <BsChevronLeft size="3rem" color="#63cbfb" />
-            </button>
-            <span>{page}</span>
-            <button
-              className="page-btn"
-              onClick={() => setPage((prevState) => prevState + 1)}
-              disabled={page === data.info.pages}
-            >
-              <BsChevronRight size="3rem" color="#63cbfb" />
-            </button>
-          </div>
+          {!data.results && data.results == undefined ? (
+            <></>
+          ) : (
+            <div className="nav btn-container">
+              <button
+                className="page-btn"
+                onClick={() =>
+                  setPage((prevState) => Math.max(prevState - 1, 0))
+                }
+                disabled={page === 1}
+              >
+                <BsChevronLeft size="3rem" color="#63cbfb" />
+              </button>
+              <span>{page}</span>
+              <button
+                className="page-btn"
+                onClick={() => setPage((prevState) => prevState + 1)}
+                disabled={page === data.info.pages}
+              >
+                <BsChevronRight size="3rem" color="#63cbfb" />
+              </button>
+            </div>
+          )}
           {!data.results && data.results == undefined ? (
             <>
-              <span>Loading</span>
+              {data.error ===  "There is nothing here"?<span>Nenhum resultado encontrado</span>:<span>Loading</span>}
             </>
           ) : (
             data.results.map(
@@ -98,23 +107,29 @@ export default function Home() {
               )
             )
           )}
-          <div className="nav btn-container">
-            <button
-              className="page-btn"
-              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
-              disabled={page === 1}
-            >
-              <BsChevronLeft size="3rem" color="#63cbfb" />
-            </button>
-            <span>{page}</span>
-            <button
-              className="page-btn"
-              onClick={() => setPage((prevState) => prevState + 1)}
-              disabled={page === data.info.pages}
-            >
-              <BsChevronRight size="3rem" color="#63cbfb" />
-            </button>
-          </div>
+          {!data.results && data.results == undefined ? (
+            <></>
+          ) : (
+            <div className="nav btn-container">
+              <button
+                className="page-btn"
+                onClick={() =>
+                  setPage((prevState) => Math.max(prevState - 1, 0))
+                }
+                disabled={page === 1}
+              >
+                <BsChevronLeft size="3rem" color="#63cbfb" />
+              </button>
+              <span>{page}</span>
+              <button
+                className="page-btn"
+                onClick={() => setPage((prevState) => prevState + 1)}
+                disabled={page === data.info.pages}
+              >
+                <BsChevronRight size="3rem" color="#63cbfb" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -30,19 +30,50 @@ export const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-bottom:5%;
+  margin-bottom: 5%;
+  margin-top: 5%;
 `;
 
 export const CheckBox = styled.input`
-  margin-left:1%;
-  margin-right:auto;
-`
+  margin-left: 1%;
+  margin-right: auto;
+`;
 
-export const BtnSearch = styled.button``;
-export const BtnClear = styled.button``;
+export const BtnSearch = styled.button`
+  height: 40px;
+  width: 40%;
+  color: #fff;
+  background: #63cbfb;
+  border: none;
+  margin-bottom: 0;
+  cursor: pointer;
+  &:hover {
+    background: #53abee;
+  }
+`;
+export const BtnClear = styled.button`
+  height: 40px;
+  width: 40%;
+  color: #fff;
+  background: #6cac6c;
+  border: none;
+  margin-bottom: 0;
+  cursor: pointer;
+  &:hover {
+    background: #1b6f20;
+  }
+`;
 export const Search = styled.input`
   background-color: #303030;
   border-right: none;
+  border-top: none;
+  border-left: none;
   width: 100%;
-  height: 20px;
+  height: 25px;
+  border-color: white;
 `;
+
+export const Label = styled.label`
+  margin-bottom: 6px;
+
+`

@@ -1,26 +1,22 @@
 import Head from "next/head";
 import Card from "../components/Card/Card";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getCharactersData } from "../state/actions/charactersActions";
-import styles from "@/styles/Home.module.css";
+import { useSelector } from "react-redux";
 import { useQuery } from "react-query";
 import Loading from "@/components/loading/Loading";
 import SideBar from "@/components/SideBar/SideBar";
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 export default function Home() {
-  const charactersData = useSelector(
-    (state: any) => state?.characters?.charactersData
-  );
-
-  const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const filtersData = useSelector((state: any) => state?.filters);
 
   const fetchCharacters = async (page) => {
     const res = await fetch(
       `https://rickandmortyapi.com/api/character?page=${page}`
     );
+    console.log(filtersData)
     return res.json();
   };
 
@@ -30,7 +26,6 @@ export default function Home() {
     { keepPreviousData: true }
   );
 
-  console.log(data);
   if (isLoading) return <Loading />;
 
   //if (error) return 'An error has occurred: ' + error.message
@@ -57,6 +52,23 @@ export default function Home() {
               </label>
             </div>
           </div>
+          <div className="nav btn-container">
+            <button
+              className="page-btn"
+              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
+              disabled={page === 1}
+            >
+              <BsChevronLeft size="3rem" color="#63cbfb" />
+            </button>
+            <span>{page}</span>
+            <button
+              className="page-btn"
+              onClick={() => setPage((prevState) => prevState + 1)}
+              disabled={page === data.info.pages}
+            >
+              <BsChevronRight size="3rem" color="#63cbfb" />
+            </button>
+          </div>
           {!data.results && data.results == undefined ? (
             <>
               <span>Loading</span>
@@ -64,23 +76,25 @@ export default function Home() {
           ) : (
             data.results.map(
               (c: { id: number; image: string; name: string }) => (
-                <Card img={c.image} name={c.name} id={c.id} />
+                <Card key={c.id} img={c.image} name={c.name} id={c.id} />
               )
             )
           )}
           <div className="nav btn-container">
             <button
+              className="page-btn"
               onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
               disabled={page === 1}
             >
-              Prev Page
+              <BsChevronLeft size="3rem" color="#63cbfb" />
             </button>
-
+            <span>{page}</span>
             <button
+              className="page-btn"
               onClick={() => setPage((prevState) => prevState + 1)}
               disabled={page === data.info.pages}
             >
-              Next Page
+              <BsChevronRight size="3rem" color="#63cbfb" />
             </button>
           </div>
         </div>

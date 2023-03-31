@@ -6,9 +6,12 @@ import {
   BtnSearch,
   BtnClear,
   FilterContainer,
-  CheckBox
+  CheckBox,
+  Label
 } from "./Styles";
 import Image from "next/image";
+import { useSelector, useDispatch } from "react-redux";
+import { getFilters } from "../../state/actions/filtersActions";
 
 export default function SideBar() {
   return (
@@ -21,15 +24,15 @@ export default function SideBar() {
       />
       <FiltersDiv>
         <FilterContainer>
-          <label>Filtrar por nome</label>
+          <Label>Filtrar por nome</Label>
           <Search placeholder="Insira o nome aqui" type="name" />
         </FilterContainer>
         <FilterContainer>
-          <label>Filtrar por especie</label>
+          <Label>Filtrar por especie</Label>
           <Search placeholder="Insira a especie aqui" type="name" />
         </FilterContainer>
         <FilterContainer>
-          <label>Status</label>
+          <Label>Status</Label>
           <select>
             <option></option>
             <option value="alive">Vivo</option>
@@ -38,7 +41,7 @@ export default function SideBar() {
           </select>
         </FilterContainer>
         <FilterContainer>
-          <label>Genero</label>
+          <Label>Genero</Label>
           <select>
             <option></option>
             <option value="male">Macho</option>
@@ -48,7 +51,7 @@ export default function SideBar() {
           </select>
         </FilterContainer>
         <FilterContainer>
-          <label>Selecionar Favoritos</label>
+          <Label>Selecionar Favoritos</Label>
           <CheckBox type="checkbox" />
         </FilterContainer>
         <BtnContainer>

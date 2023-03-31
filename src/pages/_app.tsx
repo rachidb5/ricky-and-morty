@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Provider store={store} children={undefined}>
+      <Provider store={store}>
       <main className={roboto.className}>
         <Component {...pageProps} />
         </main>

@@ -4,12 +4,12 @@ export const Btn = styled.button`
   height: 40px;
   width: 100%;
   color: #fff;
-  background: #1366e2;
+  background: #0a5cd0;
   border: none;
   margin-bottom:0;
   cursor: pointer;
   &:hover {
-    background: #0a5cd0;
+    background: #63cbfb;
   }
 `;
 export const Wrapper = styled.div`

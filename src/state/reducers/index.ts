@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
 // Import all reducers
-import charactersReducer from "./charactersReducer";
+import filtersReducer from "./filtersReducer";
 
 const reducers = combineReducers({
-    characters: charactersReducer
+    filters: filtersReducer
 })
 
 export default reducers;

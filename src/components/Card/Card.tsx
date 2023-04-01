@@ -1,4 +1,4 @@
-import { Btn, Wrapper } from "./Styles";
+import { Btn, Wrapper, TxtContainer } from "./Styles";
 import { useRouter } from "next/router";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useState, useEffect } from "react";
@@ -7,6 +7,8 @@ import { FavBtn } from "../DetailsCard/Styles";
 type Props = {
   img: string;
   name: string;
+  especie: string;
+  status: string;
   id: number;
 };
 
@@ -14,7 +16,7 @@ export default function Card(props: Props) {
   const router = useRouter();
   const [fav, setFav] = useState(false);
   const favoriteCharacter = () => {
-    let newArray: number[] = []
+    let newArray: number[] = [];
     if (!localStorage.getItem("favs")) {
       localStorage.setItem("favs", JSON.stringify([props.id]));
       setFav(true);
@@ -53,7 +55,11 @@ export default function Card(props: Props) {
             <AiOutlineHeart size="2em" color="white" />
           )}
         </FavBtn>
-        <h2>{props.name}</h2>
+        <TxtContainer>
+          <span>{props.especie}</span>
+          <h2>{props.name}</h2>
+          <span>{props.status}</span>
+        </TxtContainer>
         <Btn onClick={() => router.push(`/character/${props.id}`)}>
           Ver detalhes
         </Btn>

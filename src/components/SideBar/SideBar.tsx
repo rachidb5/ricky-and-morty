@@ -34,7 +34,6 @@ export default function SideBar() {
     dispatch(
       getFilters(filters)
     );
-    console.log(filtersData);
   };
 
   const handleCLear = () => {
@@ -46,15 +45,14 @@ export default function SideBar() {
         genero: "",
       })
     );
-    console.log(filtersData);
   };
   return (
     <Bar>
       <Image
         src="/logo.png"
         alt="Ricky and morty's logo"
-        width={150}
-        height={75}
+        width={130}
+        height={70}
       />
 
       <h1>Personalize sua busca</h1>

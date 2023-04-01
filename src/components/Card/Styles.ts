@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  height: 350px;
+  height: 370px;
   background: #202020;
   margin: auto;
   position: relative;
@@ -35,4 +35,8 @@ export const Container = styled.div`
   width: 280px;
   height: 500px;
   margin: 30px auto;
+`;
+
+export const TxtContainer = styled.div`
+  padding-left:5px;
 `;

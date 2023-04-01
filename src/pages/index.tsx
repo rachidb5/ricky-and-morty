@@ -9,6 +9,8 @@ import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { getFilters } from "@/state/actions/filtersActions";
 import Link from "next/link";
+import axios from "axios";
+import Image from "next/image";
 
 export default function Home() {
   const [page, setPage] = useState(1);
@@ -17,10 +19,10 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const fetchCharacters = async (page, filter) => {
-    const res = await fetch(
+    const res = await axios.get(
       `https://rickandmortyapi.com/api/character?page=${page}&name=${filter.name}&status=${filter.status}&species=${filter.especie}&gender=${filter.genero}`
     );
-    return res.json();
+    return res.data;
   };
 
   const { isLoading, isError, error, data, isFetching } = useQuery(
@@ -40,6 +42,7 @@ export default function Home() {
     );
   }, []);
 
+  console.log(data);
   if (isLoading) return <Loading />;
   //if (error) return 'An error has occurred: ' + error.message
   return (
@@ -54,18 +57,26 @@ export default function Home() {
         <SideBar />
         <div className="main">
           <div className="main-header">
+            <div className="img-responsive">
+              <Image
+                src="/logo.png"
+                alt="Ricky and morty's logo"
+                width={130}
+                height={70}
+              />
+            </div>
             <h2>Personagens</h2>
             <Link href={"/favoritos"}>
               <h4>Ver Favoritos</h4>
             </Link>
-            <div id="darkmode">
+            {/*<div id="darkmode">
               <input type="checkbox" className="checkbox" id="checkbox" />
               <label htmlFor="checkbox" className="label">
                 <BsMoonStarsFill color="white" />
                 <BsFillSunFill color="yellow" />
                 <div className="ball"></div>
               </label>
-            </div>
+            </div>*/}
           </div>
           {!data.results && data.results == undefined ? (
             <></>
@@ -100,8 +111,21 @@ export default function Home() {
             </>
           ) : (
             data.results.map(
-              (c: { id: number; image: string; name: string }) => (
-                <Card key={c.id} img={c.image} name={c.name} id={c.id} />
+              (c: {
+                id: number;
+                image: string;
+                name: string;
+                species: string;
+                status: string;
+              }) => (
+                <Card
+                  key={c.id}
+                  img={c.image}
+                  name={c.name}
+                  id={c.id}
+                  especie={c.species}
+                  status={c.status}
+                />
               )
             )
           )}

@@ -13,6 +13,9 @@ export const Bar = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 700px) {
+    display: none
+  }
 `;
 
 export const FiltersDiv = styled.div`

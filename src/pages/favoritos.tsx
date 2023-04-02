@@ -6,14 +6,19 @@ import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Header from "@/components/Header/Header";
 import Image from "next/dist/client/image";
-import Link from 'next/link'
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Favoritos() {
   let arr: number[] = [];
-  if (!JSON.parse(localStorage.getItem("favs"))) {
-    localStorage.setItem("favs", JSON.stringify(arr));
-  }
-  arr = JSON.parse(localStorage.getItem("favs"));
+
+  useEffect(() => {
+    if (!JSON.parse(localStorage.getItem("favs"))) {
+      localStorage.setItem("favs", JSON.stringify(arr));
+    }
+    arr = JSON.parse(localStorage.getItem("favs"));
+  
+  }, [arr]);
 
   const fetchCharacters = async () => {
     const res = await fetch(`https://rickandmortyapi.com/api/character/${arr}`);
@@ -40,18 +45,18 @@ export default function Favoritos() {
         <div className="main">
           <Header />
           <div className="img-responsive">
-          <Link href={"/"}>
+            <Link href={"/"}>
               <Image
                 src="/logo.png"
                 alt="Ricky and morty's logo"
                 width={130}
                 height={70}
               />
-              </Link>
-            </div>
+            </Link>
+          </div>
           <div className="main-header">
             <h2>Personagens Favoritados</h2>
-          {/*  <div id="darkmode">
+            {/*  <div id="darkmode">
               <input type="checkbox" className="checkbox" id="checkbox" />
               <label htmlFor="checkbox" className="label">
                 <BsMoonStarsFill color="white" />

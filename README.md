@@ -23,14 +23,6 @@ yarn dev
 Abra [http://localhost:3000](http://localhost:3000) no seu browser.
 
 
-## Iniciando o projeto
-
-```bash
-npm run build
-# and
-npm start
-```
-
 ## Executando testes
 
 ```bash

@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "@/components/loading/Loading";
 import Header from "@/components/Header/Header";
+import Image from 'next/image'
+import Link from "next/link";
 
 interface IObj {
   name: string;
@@ -65,6 +67,16 @@ export default function Character() {
   return (
     <div>
       <Header />
+      <div className="img-responsive">
+      <Link href={"/"}>
+        <Image
+          src="/logo.png"
+          alt="Ricky and morty's logo"
+          width={130}
+          height={70}
+        />
+        </Link>
+      </div>
       <div className="title-char">
         <h1>Personagem</h1>
       </div>

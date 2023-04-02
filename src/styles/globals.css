@@ -207,3 +207,13 @@ h2 {
 .title-char{
   margin-left: 10%;
 }
+
+.responsive-h1{
+  font-size: 20px;
+}
+.responsive-h2{
+  font-size: 15px;
+}
+.responsive-span{
+  font-size: 10px;
+}

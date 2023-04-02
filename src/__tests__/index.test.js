@@ -289,5 +289,4 @@ describe("Testes de favoritar",()=> {
       expect(favs[0]).toEqual(1);
     });
   });
-
 });

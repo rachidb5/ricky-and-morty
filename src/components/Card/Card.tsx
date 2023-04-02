@@ -48,7 +48,7 @@ export default function Card(props: Props) {
     <>
       <Wrapper>
         <img src={props.img} className="char-img" />
-        <FavBtn type="button" onClick={() => favoriteCharacter()}>
+        <FavBtn type="button" role="fav-btn" onClick={() => favoriteCharacter()}>
           {fav ? (
             <AiFillHeart size="2em" color="red" />
           ) : (
@@ -56,9 +56,9 @@ export default function Card(props: Props) {
           )}
         </FavBtn>
         <TxtContainer>
-          <span>{props.especie}</span>
-          <h2>{props.name}</h2>
-          <span>{props.status}</span>
+          <span role="species">{props.especie}</span>
+          <h2 className="char-name" role="name">{props.name}</h2>
+          <span role="status">{props.status}</span>
         </TxtContainer>
         <Btn onClick={() => router.push(`/character/${props.id}`)}>
           Ver detalhes

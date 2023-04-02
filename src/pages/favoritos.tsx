@@ -50,7 +50,7 @@ export default function Favoritos() {
               </Link>
             </div>
           <div className="main-header">
-            <h2>Personagens</h2>
+            <h2>Personagens Favoritados</h2>
           {/*  <div id="darkmode">
               <input type="checkbox" className="checkbox" id="checkbox" />
               <label htmlFor="checkbox" className="label">

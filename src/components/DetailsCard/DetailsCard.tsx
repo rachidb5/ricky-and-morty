@@ -55,7 +55,7 @@ useEffect(() => {
             <span>Nome</span>
             <h1>{props.name}</h1>
           </Item>
-          <FavBtn type="button" onClick={() => favoriteCharacter()}>
+          <FavBtn role="fav-det" type="button" onClick={() => favoriteCharacter()}>
             {fav ? (
               <AiFillHeart size="2em" color="red" />
             ) : (

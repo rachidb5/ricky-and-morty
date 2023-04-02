@@ -8,6 +8,7 @@ import {
   FilterContainer,
   CheckBox,
   Label,
+  Row,
 } from "./Styles";
 import Image from "next/image";
 import { useState } from "react";
@@ -15,25 +16,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFilters } from "../../state/actions/filtersActions";
 
 interface IFilters {
-  name: string
-  especie: string,
-  status: string,
-  genero: string,
+  name: string;
+  especie: string;
+  status: string;
+  genero: string;
 }
-export default function SideBar() {
+export default function ResponsiveFilter() {
   const [filters, setFilters] = useState<IFilters>({
-    name: '',
-    especie: '',
-    status: '',
-    genero: '',
+    name: "",
+    especie: "",
+    status: "",
+    genero: "",
   });
   const dispatch = useDispatch();
   const filtersData = useSelector((state: any) => state);
 
   const handleCLick = () => {
-    dispatch(
-      getFilters(filters)
-    );
+    dispatch(getFilters(filters));
   };
 
   const handleCLear = () => {
@@ -42,7 +41,7 @@ export default function SideBar() {
       especie: "",
       status: "",
       genero: "",
-    })
+    });
     dispatch(
       getFilters({
         name: "",
@@ -54,13 +53,6 @@ export default function SideBar() {
   };
   return (
     <Bar>
-      <Image
-        src="/logo.png"
-        alt="Ricky and morty's logo"
-        width={130}
-        height={70}
-      />
-
       <h1>Personalize sua busca</h1>
       <FiltersDiv>
         <FilterContainer>
@@ -68,7 +60,9 @@ export default function SideBar() {
           <Search
             placeholder="Insira o nome aqui"
             type="name"
-            onChange={({ target: { value } }) => setFilters({...filters, name: value})}
+            onChange={({ target: { value } }) =>
+              setFilters({ ...filters, name: value })
+            }
             value={filters.name}
           />
         </FilterContainer>
@@ -77,13 +71,21 @@ export default function SideBar() {
           <Search
             placeholder="Insira a especie aqui"
             type="name"
-            onChange={({ target: { value } }) => setFilters({...filters, especie: value})}
+            onChange={({ target: { value } }) =>
+              setFilters({ ...filters, especie: value })
+            }
             value={filters.especie}
           />
         </FilterContainer>
+
         <FilterContainer>
           <Label>Status</Label>
-          <select role="select" onChange={({ target: { value } }) => setFilters({...filters, status: value})}>
+          <select
+            role="select"
+            onChange={({ target: { value } }) =>
+              setFilters({ ...filters, status: value })
+            }
+          >
             <option value={filters.status}></option>
             <option value="alive">Vivo</option>
             <option value="dead">Morto</option>
@@ -92,8 +94,13 @@ export default function SideBar() {
         </FilterContainer>
         <FilterContainer>
           <Label>Genero</Label>
-          <select role="select" onChange={({ target: { value } }) => setFilters({...filters, genero: value})}>
-            <option  value={filters.genero}></option>
+          <select
+            role="select"
+            onChange={({ target: { value } }) =>
+              setFilters({ ...filters, genero: value })
+            }
+          >
+            <option value={filters.genero}></option>
             <option value="male">Macho</option>
             <option value="female">Femea</option>
             <option value="genderless">Sem gênero</option>

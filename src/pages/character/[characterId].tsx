@@ -65,6 +65,9 @@ export default function Character() {
   return (
     <div>
       <Header />
+      <div className="title-char">
+        <h1>Personagem</h1>
+      </div>
       <DetailsCard
         name={data.name}
         img={data.image}

@@ -11,6 +11,7 @@ import { getFilters } from "@/state/actions/filtersActions";
 import Link from "next/link";
 import axios from "axios";
 import Image from "next/image";
+import ResponsiveFilter from "@/components/ResponsiveFilter/ResponsiveFilter";
 
 export default function Home() {
   const [page, setPage] = useState(1);
@@ -78,7 +79,10 @@ export default function Home() {
               </label>
             </div>*/}
           </div>
-          {!data.results && data.results == undefined ? (
+          <ResponsiveFilter />
+          {data === undefined ? (
+            <span></span>
+          ) : !data.results && data == undefined ? (
             <></>
           ) : (
             <div className="nav btn-container">
@@ -101,7 +105,9 @@ export default function Home() {
               </button>
             </div>
           )}
-          {!data.results && data.results == undefined ? (
+          {data === undefined ? (
+            <span>Nenhum resultado encontrado</span>
+          ) : !data.results && data == undefined ? (
             <>
               {data.error === "There is nothing here" ? (
                 <span>Nenhum resultado encontrado</span>
@@ -129,7 +135,9 @@ export default function Home() {
               )
             )
           )}
-          {!data.results && data.results == undefined ? (
+          {data === undefined ? (
+            <span></span>
+          ):(!data.results && data.results == undefined ? (
             <></>
           ) : (
             <div className="nav btn-container">
@@ -151,7 +159,7 @@ export default function Home() {
                 <BsChevronRight size="3rem" color="#63cbfb" />
               </button>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </>

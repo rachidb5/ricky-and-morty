@@ -7,27 +7,28 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Header from "@/components/Header/Header";
 import Image from "next/dist/client/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Favoritos() {
-  let arr: number[] = [];
+  const [arr, setArr] = useState([]);
+  
+  const fetchCharacters = async (arrIds) => {
+    const res = await fetch(
+      `https://rickandmortyapi.com/api/character/${arrIds}`
+    );
+    return res.json();
+  };
 
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem("favs"))) {
       localStorage.setItem("favs", JSON.stringify(arr));
     }
-    arr = JSON.parse(localStorage.getItem("favs"));
-  
-  }, [arr]);
-
-  const fetchCharacters = async () => {
-    const res = await fetch(`https://rickandmortyapi.com/api/character/${arr}`);
-    return res.json();
-  };
+    setArr(JSON.parse(localStorage.getItem("favs")));
+  }, []);
 
   const { isLoading, isError, error, data, isFetching } = useQuery(
-    ["Characters"],
-    () => fetchCharacters(),
+    ["Characters", arr],
+    () => fetchCharacters(arr),
     { keepPreviousData: true }
   );
 

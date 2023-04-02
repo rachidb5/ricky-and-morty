@@ -4,8 +4,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ```bash
 npm install
 ```
-## Ambiente de desenvolvimento
+## Clonando o projeto e entrando na pasta
 
+```bash
+git clone https://github.com/rachidb5/ricky-and-morty.git
+# e
+cd ricky-and-morty
+```
+
+## Ambiente de desenvolvimento
 
 ```bash
 npm run dev

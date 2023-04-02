@@ -32,7 +32,7 @@ npm test
 ## Disponivel em
 
 
-[https://sm-places.vercel.app/](https://sm-places.vercel.app/)
+[https://ricky-and-morty-pi.vercel.app/](https://ricky-and-morty-pi.vercel.app/)
 
 
 

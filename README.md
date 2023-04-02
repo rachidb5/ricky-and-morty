@@ -12,12 +12,18 @@ git clone https://github.com/rachidb5/ricky-and-morty.git
 cd ricky-and-morty
 ```
 
-## Executando o projeto localmente
+## Executando o ambiente de desenvolvimento
 
 ```bash
 npm run dev
 ```
+## Iniciando o projeto
 
+```bash
+npm run build
+# and
+npm start
+```
 Abra [http://localhost:3000](http://localhost:3000) no seu browser.
 
 
